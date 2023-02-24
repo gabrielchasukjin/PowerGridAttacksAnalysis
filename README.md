@@ -1,13 +1,14 @@
 # Attacks on Power Grids Analysis
+
 **Authors**: Gabriel Cha, Jun-Hee Hwang
 
 **Tools**: Python, Pandas, Plotly, Numpy
 
 ---
 ## Introduction 
-Power outages can have a significant economic impact, as they can disrupt business operations and cause a loss of revenue. The rise in severe outages over the recent decades should not be overlooked. 
+Power outages can have a significant economic impact, as they can disrupt business operations and cause loss in revenue. The rise in severe outages over the recent decades should not be overlooked. 
 
-Specifically, there has been a rise of intentional attacks on power grids. Interestingly, these attacks have been clustered around certain US States, such as Washington and Iowa. Are these states experiencing a rise in attacks by chance alone, or is there something bigger at play? 
+Specifically, there has been a rise of intentional attacks on power grids. Interestingly, these attacks have been clustered around certain US States, such as Washington and Iowa. **Are these states experiencing a rise in attacks by chance alone, or is there something bigger at play?**
 
 
 ## Cleaning and EDA
