@@ -1,5 +1,6 @@
 # Attacks on Power Grids Analysis
 **Authors**: Gabriel Cha, Jun-Hee Hwang
+
 **Tools**: Python, Pandas, Plotly, Numpy
 
 ---
