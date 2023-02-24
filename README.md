@@ -12,11 +12,15 @@ Specifically, there has been a rise of intentional attacks on power grids. Inter
 
 
 ## Cleaning and EDA
-**Univariate Analysis: Outage Distribution**
+### Univariate Analysis
+
+**Outage Distribution**
 As shwon in the distribution, most of the outages are clustered in the front. This means that majority of outages lasted less than 2000 minutes. More specifcally, 64.67% of all outages are in the very first `[0, 1999)` bin. Outlier: The longest outage lasted 108653 minutes (roughly 4527 Days and 5 Hours) caused from a fuel supply emergency in Wisconsin.
-**Univariate Analysis: Causality Barchart**
+
+**Causality Barchart**
 As shown in the distribution, outages are most commonly caused from severe weather. Specifcally, 49.74% of outages are due to severe weather. Intentional attacks is the second main leading cause outages, making up 27.25% of the recorded outages in the dataset.
-**Univariate Analysis: Location of Outages** 
+
+**Location of Outages** 
 As shwon in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
 
 
