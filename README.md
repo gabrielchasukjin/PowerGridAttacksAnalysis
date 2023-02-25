@@ -64,16 +64,45 @@ Since we are planning to use this column in graphic analysis, we decided to fill
 ### Univariate Analysis
 **Outage Distribution**
 
+<iframe src="assets/Outage_Duration_Distribution.html" width=800 height=600 frameBorder=0></iframe>
+
 As shown in the distribution, most of the outages are clustered in the front. This means that majority of outages lasted less than 2000 minutes. More specifcally, 64.67% of all outages are in the very first `[0, 1999)` bin. Outlier: The longest outage lasted 108653 minutes (roughly 4527 Days and 5 Hours) caused from a fuel supply emergency in Wisconsin.
 
-
 **Causality Barchart**
+
+<iframe src="assets/Cause_of_Outage" width=800 height=600 frameBorder=0></iframe>
 
 As shown in the distribution, outages are most commonly caused from severe weather. Specifcally, 49.74% of outages are due to severe weather. Intentional attacks is the second main leading cause outages, making up 27.25% of the recorded outages in the dataset.
 
 **Location of Outages** 
 
+<iframe src="assets/Outage_Occurence_State.html" width=800 height=600 frameBorder=0></iframe>
+
 As shwon in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
+
+### Bivariate Analysis
+**Time (Year) vs Number of Outages**
+
+<iframe src="assets/Outage_Occurrence_Year.html" width=800 height=600 frameBorder=0></iframe>
+
+We wanted to determine the empirical relationship between Time and Number of Outages. As shown in the line plot, the number of outages generally increased as time increased until 2011 when the number of outages peaked and graudually decreased from then on. 
+
+Because we were curious to know what caused the peak in 2011, we filtered the dataset to observe the leading cause of outages in that year. 
+
+| CAUSE.CATEGORY                |   MONTH |
+|:------------------------------|--------:|
+| equipment failure             |       4 |
+| fuel supply emergency         |       6 |
+| intentional attack            |     121 |
+| islanding                     |       3 |
+| public appeal                 |      16 |
+| severe weather                |     107 |
+| system operability disruption |      12 |
+
+As shown in the DataFrame, intentional attacks was the leading cause of outages in the year 2011. Interestingly, in the previous year (2010) there were no reported outages caused by intentional attacks. 
+To see if intentional attacks were common in previous years, we graphed a line plot of the total number of intentional attacks vs time.
+
+<iframe src="assets/Intentional_Attack_Occurrence_Year.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Interesting Aggregates
 **Conditional Distribution of States Given Cause of Outage**
@@ -110,7 +139,7 @@ Here, we measured the independency of the missing values in the `OUTAGE.DURATION
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_State.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
 
 
 ## Hypothesis Testing
