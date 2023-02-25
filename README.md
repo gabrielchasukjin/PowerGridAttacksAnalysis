@@ -37,7 +37,6 @@ Since we are planning to use this column in graphic analysis, we decided to fill
 **6. New Column Calculating the Total Loss ($Dollar/Killowatt)**\
 The `TOTAL.PRICE` provides information on the average monthly electricity price in the U.S. state (cents/kilowatt-hour). By multiplying `TOTAL.PRICE` by `OUTAGE.DURATION`, we can calculate the amount of money (cent/kilowatt-hour) the electricity comapny could have earned during the time of outage.
 
-we need to check on dataframe. 
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
