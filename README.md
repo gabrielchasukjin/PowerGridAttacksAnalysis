@@ -212,7 +212,6 @@ Repeatedly computing the TVD of the shuffled `OUTAGE.CAUSE` will generate an emp
 Red Line = Observed TVD
 
 <iframe src="assets/TVD_Intentional.html" width=700 height=500 frameBorder=0></iframe>
-The red line indicates p-value.
 
 **Conclusion**
 The chance that the observed TVD came from the distribution of TVDs under the null is essentially 0 because the **p-value = 0**. This confirms our speculation that it was not by chance that certain states experiences higher degrees of outages caused by intentional attacks. There must be some greater reason to why Washington or Delaware experiences more attacks on their power grids, whether it may be from groups targeting power grids due to political reasons or employees intentionally damage equipment to protest working conditions. Whatever the cause, our calculated p-value indicates strong evidence against the null hypothesis.
