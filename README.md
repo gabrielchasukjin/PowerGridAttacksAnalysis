@@ -37,7 +37,7 @@ Since we are planning to use this column in graphic analysis, we decided to fill
 **6. New Column Calculating the Total Loss ($Dollar/Killowatt)**\
 The `TOTAL.PRICE` provides information on the average monthly electricity price in the U.S. state (cents/kilowatt-hour). By multiplying `TOTAL.PRICE` by `OUTAGE.DURATION`, we can calculate the amount of money (cent/kilowatt-hour) the electricity comapny could have earned during the time of outage.
 
-we need to check on dataframe. 
+#### Clean Dataframe
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
@@ -50,28 +50,27 @@ we need to check on dataframe.
 ### Univariate Analysis
 **Outage Distribution**
 
-<iframe src="assets/Outage_Duration_Distribution.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Outage_Duration_Distribution.html" width=700 height=500 frameBorder=0></iframe>
 
 As shown in the distribution, most of the outages are clustered in the front. This means that majority of outages lasted less than 2000 minutes. More specifcally, 64.67% of all outages are in the very first `[0, 1999)` bin. Outlier: The longest outage lasted 108653 minutes (roughly 4527 Days and 5 Hours) caused from a fuel supply emergency in Wisconsin.
 
 **Causality Barchart**
 
-<iframe src="assets/Cause_of_Outage" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Cause_of_Outage" width=700 height=500 frameBorder=0></iframe>
 
 As shown in the distribution, outages are most commonly caused from severe weather. Specifcally, 49.74% of outages are due to severe weather. Intentional attacks is the second main leading cause outages, making up 27.25% of the recorded outages in the dataset.
 
 **Location of Outages** 
 
-<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State_Choropleth.html" width=700 height=500 frameBorder=0></iframe>
 
 As shown in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
 
 ### Bivariate Analysis
 
-### Bivariate Analysis
 **Time (Year) vs Number of Outages**
 
-<iframe src="assets/Outage_Occurrence_Year.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Outage_Occurrence_Year.html" width=700 height=500 frameBorder=0></iframe>
 
 We wanted to determine the empirical relationship between Time and Number of Outages. As shown in the line plot, the number of outages generally increased as time increased until 2011 when the number of outages peaked and graudually decreased from then on. 
 
@@ -90,7 +89,7 @@ We became interested in what had caused this peak in 2011. As a result, we filte
 As shown in the DataFrame, intentional attacks was the leading cause of outages in the year 2011. Interestingly, in the previous year (2010) there were no reported outages caused by intentional attacks. 
 To see if these attacks were common in the previous years, we graphed a line plot of the total number of attacks against time. 
 
-<iframe src="assets/Outage_Occurrence_State.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Outage_Occurrence_State.html" width=700 height=500 frameBorder=0></iframe>
 
 ### Interesting Aggregates
 We became curious if a certain state was responsible for the rise in intentional attacks on the power grid. To answer this question, we grouped the DataFrame by state and pivoted the table based on the cause of outages so that we can output a conditional distribution of U.S. States given outage cause.
@@ -163,6 +162,10 @@ To more easily view the leading state for each cause of outage, we ran idxmax() 
 As shown in the DataFrame, Washington was the leading state for the greatest proportion of outages caused by intentional attacks in all of United States. It was from this information we formulated our Hypothesis Question. We were curious to figure out if it was by chance alone that Washington (1st Place)along with Delaware (2nd Place) became the leaders of outages caused from intentional attacks.
 
 ## Assessment of Missingness
+
+### NMAR Analysis
+While it is required by law for electric companies to report outages, some private companies may withold the number of outages they report so as to downplay the severity of an outages or avoid negative publicity. As a result, the `OUTAGE.DURATION` might contain NMAR values. While this is only a theory, it's still a possibility considering that the data generating process are based off company made reports to the Federal Energy Regulatory Commission. To avoid negative publicity or fines, private companies may withold from informing certain outages.
+
 ### Missingness Dependency
 **Dependency of OUTAGE.DURATION to CAUSE.CATEGORY**
 
@@ -170,7 +173,7 @@ Here, we measured the dependency of the missing values in the `OUTAGE.DURATION` 
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_Causality.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_Causality.html" width=700 height=500 frameBorder=0></iframe>
 
 **Dependency of OUTAGE.DURATION to YEAR**
 
@@ -178,7 +181,7 @@ Here, we measured the dependency of the missing values in the `OUTAGE.DURATION` 
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_Year.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_Year.html" width=700 height=500 frameBorder=0></iframe>
 
 **Independency of OUTAGE.DURATION to POSTAL.CODE**
 
@@ -186,21 +189,30 @@ Here, we measured the independency of the missing values in the `OUTAGE.DURATION
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_State.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State.html" width=700 height=500 frameBorder=0></iframe>
 
 ## Hypothesis Testing
 
-As stated earlier, we discovered Washington was the leading state for the greatest proportion of outages caused by intentional attacks in all of United States. We became curious to figure out if it was by random chance that Washington along with Delaware became the leaders of outages caused from intentional attacks. 
+As stated earlier, we discovered Washington was the leading state for the greatest proportion of outages caused by intentional attacks in all of United States. **We became curious to figure out if it was by random chance that Washington along with Delaware became the leaders of outages caused from intentional attacks.**
 
 **Null Hypothesis**: In the population, the proportion of outages caused by intentional attacks are similar across all U.S. States, and the cause of proportionally higher cases of intentional attacks in certain U.S. States seen in our sample is due to random chance. 
 
-**Alternative Hypothesis**: In the population, the reason for proportionally higher cases of intentional attacks in certian U.S. States cannot be explained by random chance alone. Something bigger is at play.
+**Alternative Hypothesis**: In the population, the reason for proportionally higher cases of intentional attacks in certian U.S. States cannot be explained by random chance alone. Something bigger is at play.  
 
-The following is empirical distribution for the proof of our hypothesis.\
-The red line indicates p-value 
-<iframe src="assets/TVD_Intentional.html" width=800 height=600 frameBorder=0></iframe>
+**Relevant Columns**
+The two main columns necessary to perform out Hypothesis Test is `POSTAL.CODE` and `OUTAGE.CAUSE`. Since we are performing the test under the null hypothesis, we must generate our test statistic from shuffling the `OUTAGE.CAUSE`.
 
-#### Conclusion
-We used Total Variation Distance as test statistics because we are dealing with categorical value, which is `POSTAL.CODE` and if the following row is caused by intentional attack or not. It was good choice because the Total Variation Distance of the two, whether the following outage was caused by an intentional attack or not, directly shows if the intentional attack occurrence is clustered around certain states. As a result, after running 10000 permutation tests, the calculated p-value was 0.\
-Since the calculated p-value is below the cutoff (five percent), we reject null hypothesis. 
-Thus, we conclude that there are very high chance that the reason for proportionally higher cases of intentional attacks in certian U.S. States is not random chance alone. 
+**Test Statistic** 
+After shuffling, we must label each outage as either an intentional attack or non-intentional attack. This allows us to use the **Total Variation Distance** as our test statistic which describes the distance between two categorical distributions.
+
+Repeatedly computing the TVD of the shuffled `OUTAGE.CAUSE` will generate an empirical distribution of TVDs, under the null hypothesis. 
+
+
+**Empirical Distribution of TVDs**
+Red Line = Observed TVD
+
+<iframe src="assets/TVD_Intentional.html" width=700 height=500 frameBorder=0></iframe>
+The red line indicates p-value.
+
+**Conclusion**
+The chance that the observed TVD came from the distribution of TVDs under the null is essentially 0 because the **p-value = 0**. This confirms our speculation that it was not by chance that certain states experiences higher degrees of outages caused by intentional attacks. There must be some greater reason to why Washington or Delaware experiences more attacks on their power grids, whether it may be from groups targeting power grids due to political reasons or employees intentionally damage equipment to protest working conditions. Whatever the cause, our calculated p-value indicates strong evidence against the null hypothesis.
