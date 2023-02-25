@@ -15,8 +15,8 @@ The column `YEAR` is used to see when the rate of intentional attacks on power g
 Columns `U.S._STATE` and `POSTAL.CODE` are used to determine where the attacks are clustered.\
 Columns `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.TIME`, and `OUTAGE.RESTORATION.DATE` are used to see the time it took to restore the power.\
 Column `CAUSE.CATEGORY` is used to see what kind of causality there are and the proportion of intentional attacks among them.\
-Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage.\ 
-Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks.\ 
+Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage.\
+Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks.
 
 
 ## Cleaning and EDA
@@ -47,6 +47,8 @@ Since we are planning to use this column frequently throughout the analysis, we 
 Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`. 
 
 #### Cleaned dataframe
+
+Final dataframe is shown below.
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
