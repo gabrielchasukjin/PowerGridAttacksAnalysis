@@ -37,7 +37,10 @@ Since we are planning to use this column in graphic analysis, we decided to fill
 **6. New Column Calculating the Total Loss ($Dollar/Killowatt)**\
 The `TOTAL.PRICE` provides information on the average monthly electricity price in the U.S. state (cents/kilowatt-hour). By multiplying `TOTAL.PRICE` by `OUTAGE.DURATION`, we can calculate the amount of money (cent/kilowatt-hour) the electricity comapny could have earned during the time of outage.
 
+<<<<<<< HEAD
 #### Clean Dataframe
+=======
+>>>>>>> 879e9523a4f778f0e2cd6f9130477955079a3fca
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
@@ -199,6 +202,7 @@ As stated earlier, we discovered Washington was the leading state for the greate
 
 **Alternative Hypothesis**: In the population, the reason for proportionally higher cases of intentional attacks in certian U.S. States cannot be explained by random chance alone. Something bigger is at play.  
 
+<<<<<<< HEAD
 **Relevant Columns**
 The two main columns necessary to perform out Hypothesis Test is `POSTAL.CODE` and `OUTAGE.CAUSE`. Since we are performing the test under the null hypothesis, we must generate our test statistic from shuffling the `OUTAGE.CAUSE`.
 
@@ -216,3 +220,13 @@ The red line indicates p-value.
 
 **Conclusion**
 The chance that the observed TVD came from the distribution of TVDs under the null is essentially 0 because the **p-value = 0**. This confirms our speculation that it was not by chance that certain states experiences higher degrees of outages caused by intentional attacks. There must be some greater reason to why Washington or Delaware experiences more attacks on their power grids, whether it may be from groups targeting power grids due to political reasons or employees intentionally damage equipment to protest working conditions. Whatever the cause, our calculated p-value indicates strong evidence against the null hypothesis.
+=======
+The following is empirical distribution for the proof of our hypothesis.\
+The red line indicates p-value 
+<iframe src="assets/TVD_Intentional.html" width=700 height=500 frameBorder=0></iframe>
+
+#### Conclusion
+We used Total Variation Distance as test statistics because we are dealing with categorical value, which is `POSTAL.CODE` and if the following row is caused by intentional attack or not. It was good choice because the Total Variation Distance of the two, whether the following outage was caused by an intentional attack or not, directly shows if the intentional attack occurrence is clustered around certain states. As a result, after running 10000 permutation tests, the calculated p-value was 0.\
+Since the calculated p-value is below the cutoff (five percent), we reject null hypothesis. 
+Thus, we conclude that there are very high chance that the reason for proportionally higher cases of intentional attacks in certian U.S. States is not random chance alone. 
+>>>>>>> 879e9523a4f778f0e2cd6f9130477955079a3fca
