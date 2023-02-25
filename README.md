@@ -33,7 +33,7 @@ We discovered some dates in `OUTAGE.START.DATE` column are missing. However, the
 **4. Combine Time and Date into Timestamp Object**\
 The power outage start date and time is given by `OUTAGE.START.TIME` and `OUTAGE.START.DATE`. We combined the two columns into a new `pd.Timestamp` column called `OUTAGE.START`. Likewise, we combined `OUTAGE.RESTORATION.DATE` and `OUTAGE.RESTORATION.DATE` columns into a new `pd.Timestamp` column called `OUTAGE.RESTORATION`.\
 **5. Fill NaN values in TOTAL.PRICE**\
-Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`.\ 
+Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`.\
 **6. New Column Calculating the Total Loss ($Dollar/Killowatt)**\
 The `TOTAL.PRICE` provides information on the average monthly electricity price in the U.S. state (cents/kilowatt-hour). By multiplying `TOTAL.PRICE` by `OUTAGE.DURATION`, we can calculate the amount of money (cent/kilowatt-hour) the electricity comapny could have earned during the time of outage.
 
