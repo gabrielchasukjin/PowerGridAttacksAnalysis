@@ -6,12 +6,21 @@
 Power outages can have a significant economic impact, as they can disrupt business operations and cause loss in revenue. 
 
 Specifically, there has been a rise of intentional attacks on power grids. Interestingly, these attacks have been clustered around certain US States, such as Washington and Iowa. **Are these states experiencing a rise in attacks by chance alone, or is there something bigger at play?**
+
+**Rows and Columns**
+
 There are 1534 rows and 12 columns in the dataset that are relevant to the question. 
+
 The column `YEAR` is used to see when the rate of intentional attacks on power grids began to rise. 
+
 Columns `U.S._STATE` and `POSTAL.CODE` are used to determine where the attacks are clustered. 
+
 Columns `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.TIME`, and `OUTAGE.RESTORATION.DATE` are used to see the time it took to restore the power.
+
 Column `CAUSE.CATEGORY` is used to see what kind of causality there are and the proportion of intentional attacks among them. 
+
 Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage. 
+
 Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks. 
 
 
