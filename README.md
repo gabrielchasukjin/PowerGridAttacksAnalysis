@@ -89,7 +89,7 @@ We became interested in what had caused this peak in 2011. As a result, we filte
 As shown in the DataFrame, intentional attacks was the leading cause of outages in the year 2011. Interestingly, in the previous year (2010) there were no reported outages caused by intentional attacks. 
 To see if these attacks were common in the previous years, we graphed a line plot of the total number of attacks against time. 
 
-<iframe src="assets/Outage_Occurrence_State.html" width=700 height=500 frameBorder=0></iframe>
+<iframe src="assets/Intentional_Attack_Occurrence_Year.html" width=700 height=500 frameBorder=0></iframe>
 
 ### Interesting Aggregates
 We became curious if a certain state was responsible for the rise in intentional attacks on the power grid. To answer this question, we grouped the DataFrame by state and pivoted the table based on the cause of outages so that we can output a conditional distribution of U.S. States given outage cause.
