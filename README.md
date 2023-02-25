@@ -6,6 +6,14 @@
 Power outages can have a significant economic impact, as they can disrupt business operations and cause loss in revenue. 
 
 Specifically, there has been a rise of intentional attacks on power grids. Interestingly, these attacks have been clustered around certain US States, such as Washington and Iowa. **Are these states experiencing a rise in attacks by chance alone, or is there something bigger at play?**
+There are 1534 rows and 12 columns in the dataset that are relevant to the question. 
+The column `YEAR` is used to see when the rate of intentional attacks on power grids began to rise. 
+Columns `U.S._STATE` and `POSTAL.CODE` are used to determine where the attacks are clustered. 
+Columns `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.TIME`, and `OUTAGE.RESTORATION.DATE` are used to see the time it took to restore the power.
+Column `CAUSE.CATEGORY` is used to see what kind of causality there are and the proportion of intentional attacks among them. 
+Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage. 
+Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks. 
+
 
 ## Cleaning and EDA
 ### Data Cleaning
@@ -13,6 +21,10 @@ Specifically, there has been a rise of intentional attacks on power grids. Inter
 **Conversion from Excel to csv file**
 
 We first converted the given file to csv file. In the process, we deleted title and description so that it is readable in cvs format. 
+
+**Filter useless columns**
+
+We sorted out the only columns that we're going to use in the analysis. This way, it is easier to refer to when we need to check on dataframe. 
 
 **Fill NaN values in OUTAGE.START.DATE**
 
@@ -32,13 +44,13 @@ Since we are planning to use this column in graphic analysis, we decided to fill
 
 **Cleaned dataframe**
 
-|   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE | OUTAGE.START        | OUTAGE.RESTORATION   |   category_median |   price_median |   TOTAL.LOSS |
-|-------:|:--------------|:-------------|:-------------------|:-------------------|------------------:|--------------:|:--------------------|:---------------------|------------------:|---------------:|-------------:|
-|   2011 | MN            | Minnesota    | normal             | severe weather     |              3060 |          9.28 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |              2460 |           9.19 |   4732.8     |
-|   2014 | MN            | Minnesota    | normal             | intentional attack |                 1 |          9.28 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00  |                56 |           9.19 |      1.54667 |
-|   2010 | MN            | Minnesota    | cold               | severe weather     |              3000 |          8.15 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |              2460 |           9.19 |   4075       |
-|   2012 | MN            | Minnesota    | normal             | severe weather     |              2550 |          9.19 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |              2460 |           9.19 |   3905.75    |
-|   2015 | MN            | Minnesota    | warm               | severe weather     |              1740 |         10.43 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |              2460 |           9.19 |   3024.7     |
+|   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
+|-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
+|   2011 | MN            | Minnesota    | normal             | Friday, July 01, 2011     | 5:00:00 PM          | Sunday, July 03, 2011      | 8:00:00 PM                | severe weather     |              3060 |          9.28 |                70000 |
+|   2014 | MN            | Minnesota    | normal             | Sunday, May 11, 2014      | 6:38:00 PM          | Sunday, May 11, 2014       | 6:39:00 PM                | intentional attack |                 1 |          9.28 |                  nan |
+|   2010 | MN            | Minnesota    | cold               | Tuesday, October 26, 2010 | 8:00:00 PM          | Thursday, October 28, 2010 | 10:00:00 PM               | severe weather     |              3000 |          8.15 |                70000 |
+|   2012 | MN            | Minnesota    | normal             | Tuesday, June 19, 2012    | 4:30:00 AM          | Wednesday, June 20, 2012   | 11:00:00 PM               | severe weather     |              2550 |          9.19 |                68200 |
+|   2015 | MN            | Minnesota    | warm               | Saturday, July 18, 2015   | 2:00:00 AM          | Sunday, July 19, 2015      | 7:00:00 AM                | severe weather     |              1740 |         10.43 |               250000 |
 
 ### Univariate Analysis
 **Outage Distribution**
@@ -54,6 +66,16 @@ As shown in the distribution, outages are most commonly caused from severe weath
 
 As shwon in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
 
+### Interesting Aggregates
+**Conditional Distribution of States Given Cause of Outage**
+
+|   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
+|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
+|              0      |                  0      |               0.0024 |      0      |          0      |           0.0066 |                          0      |
+|              0.0167 |                  0      |               0      |      0      |          0      |           0      |                          0      |
+|              0.0667 |                  0      |               0.0431 |      0      |          0      |           0.0052 |                          0.0157 |
+|              0.0167 |                  0      |               0.0144 |      0.0217 |          0.1014 |           0.0131 |                          0      |
+|              0.35   |                  0.3333 |               0.0574 |      0.6087 |          0.1304 |           0.0917 |                          0.3228 |
 
 ## Assessment of Missingness
 ### Missingness Dependency
@@ -84,4 +106,4 @@ The graph illustrates empirical distribution of TVD from the permutation testing
 
 ## Hypothesis Testing
 
-
+<iframe src="assets/TVD_Intentional.html" width=800 height=600 frameBorder=0></iframe>
