@@ -79,8 +79,7 @@ Here, we measured the independency of the missing values in the `OUTAGE.DURATION
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_Location.html" width=800 height=600 frameBorder=0></iframe>
-
+<iframe src="assets/TVD_Duration_State.html" width=800 height=600 frameBorder=0></iframe>
 
 
 ## Hypothesis Testing
