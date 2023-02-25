@@ -76,7 +76,7 @@ As shown in the distribution, outages are most commonly caused from severe weath
 
 **Location of Outages** 
 
-<iframe src="assets/Outage_Occurence_State.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Outage_Occurrence_State.html" width=800 height=600 frameBorder=0></iframe>
 
 As shwon in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
 
@@ -102,18 +102,74 @@ Because we were curious to know what caused the peak in 2011, we filtered the da
 As shown in the DataFrame, intentional attacks was the leading cause of outages in the year 2011. Interestingly, in the previous year (2010) there were no reported outages caused by intentional attacks. 
 To see if intentional attacks were common in previous years, we graphed a line plot of the total number of intentional attacks vs time.
 
-<iframe src="assets/Intentional_Attack_Occurrence_Year.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Interesting Aggregates
 **Conditional Distribution of States Given Cause of Outage**
 
-|   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
-|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
-|              0      |                  0      |               0.0024 |      0      |          0      |           0.0066 |                          0      |
-|              0.0167 |                  0      |               0      |      0      |          0      |           0      |                          0      |
-|              0.0667 |                  0      |               0.0431 |      0      |          0      |           0.0052 |                          0.0157 |
-|              0.0167 |                  0      |               0.0144 |      0.0217 |          0.1014 |           0.0131 |                          0      |
-|              0.35   |                  0.3333 |               0.0574 |      0.6087 |          0.1304 |           0.0917 |                          0.3228 |
+| U.S._STATE           |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
+|:---------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
+| Alabama              |              0      |                  0      |               0.0024 |      0      |          0      |           0.0066 |                          0      |
+| Alaska               |              0.0167 |                  0      |               0      |      0      |          0      |           0      |                          0      |
+| Arizona              |              0.0667 |                  0      |               0.0431 |      0      |          0      |           0.0052 |                          0.0157 |
+| Arkansas             |              0.0167 |                  0      |               0.0144 |      0.0217 |          0.1014 |           0.0131 |                          0      |
+| California           |              0.35   |                  0.3333 |               0.0574 |      0.6087 |          0.1304 |           0.0917 |                          0.3228 |
+| Colorado             |              0      |                  0.0196 |               0.012  |      0.0217 |          0      |           0.0052 |                          0.0315 |
+| Connecticut          |              0      |                  0      |               0.0191 |      0      |          0      |           0.0131 |                          0      |
+| Delaware             |              0.0167 |                  0      |               0.0885 |      0      |          0      |           0.0026 |                          0.0079 |
+| District of Columbia |              0.0167 |                  0      |               0      |      0      |          0      |           0.0118 |                          0      |
+| Florida              |              0.0667 |                  0      |               0.0048 |      0      |          0.0435 |           0.0341 |                          0.0787 |
+| Georgia              |              0      |                  0      |               0.0024 |      0      |          0      |           0.021  |                          0      |
+| Hawaii               |              0      |                  0      |               0      |      0      |          0      |           0.0052 |                          0.0079 |
+| Idaho                |              0      |                  0      |               0.012  |      0      |          0.0145 |           0      |                          0.0236 |
+| Illinois             |              0.0167 |                  0.0196 |               0.0024 |      0      |          0.0145 |           0.055  |                          0      |
+| Indiana              |              0.0333 |                  0.0196 |               0.0191 |      0.0652 |          0      |           0.0315 |                          0.0394 |
+| Iowa                 |              0      |                  0      |               0.012  |      0      |          0      |           0.0039 |                          0      |
+| Kansas               |              0      |                  0      |               0.0072 |      0      |          0.0145 |           0.0066 |                          0      |
+| Kentucky             |              0.0167 |                  0.0392 |               0.0024 |      0      |          0      |           0.0118 |                          0      |
+| Louisiana            |              0.05   |                  0.0196 |               0      |      0      |          0.2029 |           0.021  |                          0.0472 |
+| Maine                |              0      |                  0.0196 |               0.0167 |      0.0217 |          0      |           0.0131 |                          0      |
+| Maryland             |              0      |                  0      |               0.0598 |      0      |          0      |           0.0419 |                          0.0079 |
+| Massachusetts        |              0      |                  0.0196 |               0.0191 |      0      |          0      |           0.0092 |                          0.0157 |
+| Michigan             |              0.05   |                  0      |               0.0096 |      0.0217 |          0.0145 |           0.1088 |                          0.0236 |
+| Minnesota            |              0      |                  0      |               0.0096 |      0      |          0      |           0.0144 |                          0      |
+| Mississippi          |              0      |                  0      |               0.0072 |      0      |          0      |           0      |                          0.0079 |
+| Missouri             |              0      |                  0      |               0.012  |      0      |          0      |           0.0144 |                          0.0079 |
+| Montana              |              0      |                  0      |               0.0024 |      0.0435 |          0      |           0      |                          0      |
+| Nebraska             |              0      |                  0      |               0      |      0      |          0.0145 |           0.0039 |                          0      |
+| Nevada               |              0      |                  0      |               0.0167 |      0      |          0      |           0      |                          0      |
+| New Hampshire        |              0      |                  0      |               0.0287 |      0      |          0      |           0.0026 |                          0      |
+| New Jersey           |              0      |                  0      |               0.0239 |      0      |          0      |           0.0301 |                          0.0157 |
+| New Mexico           |              0      |                  0.0196 |               0.0144 |      0      |          0      |           0      |                          0.0079 |
+| New York             |              0.0333 |                  0.2353 |               0.0311 |      0      |          0.058  |           0.0433 |                          0.0551 |
+| North Carolina       |              0      |                  0      |               0.0096 |      0      |          0      |           0.0406 |                          0.0394 |
+| North Dakota         |              0      |                  0.0196 |               0      |      0      |          0.0145 |           0      |                          0      |
+| Ohio                 |              0.0167 |                  0      |               0.0335 |      0      |          0      |           0.0341 |                          0.0157 |
+| Oklahoma             |              0      |                  0      |               0.0072 |      0.0217 |          0.0435 |           0.0223 |                          0      |
+| Oregon               |              0.0167 |                  0      |               0.0478 |      0      |          0      |           0.0066 |                          0      |
+| Pennsylvania         |              0.0167 |                  0      |               0.0144 |      0      |          0      |           0.0629 |                          0.0157 |
+| South Carolina       |              0      |                  0      |               0      |      0      |          0      |           0.0105 |                          0      |
+| South Dakota         |              0      |                  0      |               0      |      0.0435 |          0      |           0      |                          0      |
+| Tennessee            |              0.0333 |                  0      |               0.0191 |      0      |          0.0145 |           0.0262 |                          0.0236 |
+| Texas                |              0.1    |                  0.1176 |               0.0311 |      0      |          0.2464 |           0.0852 |                          0.1575 |
+| Utah                 |              0.0167 |                  0      |               0.0837 |      0      |          0.0145 |           0.0026 |                          0.0157 |
+| Vermont              |              0      |                  0      |               0.0215 |      0      |          0      |           0      |                          0      |
+| Virginia             |              0.0167 |                  0      |               0.0024 |      0      |          0.029  |           0.0419 |                          0.0079 |
+| Washington           |              0.0167 |                  0.0196 |               0.1531 |      0.1087 |          0.0145 |           0.0315 |                          0.0079 |
+| West Virginia        |              0      |                  0      |               0.0024 |      0      |          0      |           0.0039 |                          0      |
+| Wisconsin            |              0      |                  0.098  |               0.0167 |      0      |          0.0145 |           0.0092 |                          0      |
+| Wyoming              |              0.0167 |                  0      |               0.0072 |      0.0217 |          0      |           0.0013 |                          0      |
+
+
+| CAUSE.CATEGORY                | 0          |
+|:------------------------------|:-----------|
+| equipment failure             | California |
+| fuel supply emergency         | California |
+| intentional attack            | Washington |
+| islanding                     | California |
+| public appeal                 | Texas      |
+| severe weather                | Michigan   |
+| system operability disruption | California |
 
 ## Assessment of Missingness
 ### Missingness Dependency
@@ -139,7 +195,7 @@ Here, we measured the independency of the missing values in the `OUTAGE.DURATION
 
 The graph illustrates empirical distribution of TVD from the permutation testing. Red line represents the observed TVD. 
 
-<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State.html" width=800 height=600 frameBorder=0></iframe>
 
 
 ## Hypothesis Testing
