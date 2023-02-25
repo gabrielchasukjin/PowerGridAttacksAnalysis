@@ -20,35 +20,24 @@ Column `COST.LOSS` is newly added column to see loss yielded from the power outa
 
 
 ## Cleaning and EDA
+
 ### Data Cleaning
 
-**Conversion from Excel to csv file**
+To ensure that the insights and conclusions drawn from the data are accurate and reliable, we cleaned our dataset in the following manner:\
+**1. Excel to CSV Format**\
+We converted the Excel file to CSV format. Since CSV only accepts data points seperated by commas, we deleted the title and description in the Excel file so that the data is readable into pandas DataFrame.\
+**2. Filter Out Unnecessary Columns**\
+Out of the 55 columns, we kept 11 and created 1 new column. The reason for dropping over a dozen columns were because they were unnecessary to answering our Hypothesis Question. For example, we did not require the percentage of inland water area in the state. While it may be important data points, it was unnecessary for the scope of this project.\
+**3. Fill NaN values in OUTAGE.START.DATE**\
+We discovered some dates in `OUTAGE.START.DATE` column are missing. However, the `YEAR` column still provides some level of information of when the outage occured. Therefore, we filled the missing `OUTAGE.START.DATE` values with the given `YEAR`. \
+**4. Combine Time and Date into Timestamp Object**\
+The power outage start date and time is given by `OUTAGE.START.TIME` and `OUTAGE.START.DATE`. We combined the two columns into a new `pd.Timestamp` column called `OUTAGE.START`. Likewise, we combined `OUTAGE.RESTORATION.DATE` and `OUTAGE.RESTORATION.DATE` columns into a new `pd.Timestamp` column called `OUTAGE.RESTORATION`.\
+**5. Fill NaN values in TOTAL.PRICE**\
+Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`.\ 
+**6. New Column Calculating the Total Loss ($Dollar/Killowatt)**\
+The `TOTAL.PRICE` provides information on the average monthly electricity price in the U.S. state (cents/kilowatt-hour). By multiplying `TOTAL.PRICE` by `OUTAGE.DURATION`, we can calculate the amount of money (cent/kilowatt-hour) the electricity comapny could have earned during the time of outage.
 
-We first converted the given file to csv file. In the process, we deleted title and description so that it is readable in cvs format. 
-
-**Filter useless columns**
-
-We sorted out the only columns that we're going to use in the analysis. This way, it is easier to refer to when we need to check on dataframe. 
-
-**Fill NaN values in OUTAGE.START.DATE**
-
-We found out that some data in `OUTAGE.START.DATE` column is missing while the column `YEAR` of the same row is available. We first fill out some of the missing values in `OUTAGE.START.DATE` column using the data available in the `YEAR` column. 
-
-**Convert string into Timestamp object**
-
-we converted `OUTAGE.START.TIME`, `OUTAGE.START.DATE`, `OUTAGE.RESTORATION.DATE`, and `OUTAGE.RESTORATION.DATE` columns into `OUTAGE.START` and `OUTAGE.RESTORATION`, which are series of Timestamp object of the start and restoration time. 
-
-**Fill NaN values in OUTAGE.DURATION**
-
-Since we are planning to use this column frequently throughout the analysis, we decided to fill out NaN values with the median of non-NaN values in each causality in `CAUSE.CATEGORY`. We chose to use median because we found that there are a lot of outliers in `OUTAGE.DURATION` column. 
-
-**Fill NaN values in TOTAL.PRICE**
-
-Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`. 
-
-#### Cleaned dataframe
-
-Final dataframe is shown below.
+we need to check on dataframe. 
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
@@ -73,9 +62,11 @@ As shown in the distribution, outages are most commonly caused from severe weath
 
 **Location of Outages** 
 
-<iframe src="assets/Outage_Occurrence_State.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
 
 As shown in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
+
+### Bivariate Analysis
 
 ### Bivariate Analysis
 **Time (Year) vs Number of Outages**
@@ -84,7 +75,7 @@ As shown in the bar chart, California is the leading state with the most outages
 
 We wanted to determine the empirical relationship between Time and Number of Outages. As shown in the line plot, the number of outages generally increased as time increased until 2011 when the number of outages peaked and graudually decreased from then on. 
 
-Because we were curious to know what caused the peak in 2011, we filtered the dataset to observe the leading cause of outages in that year. 
+We became interested in what had caused this peak in 2011. As a result, we filtered the dataset to observe the leading cause of outages in that year. 
 
 | CAUSE.CATEGORY                |   MONTH |
 |:------------------------------|--------:|
@@ -97,12 +88,12 @@ Because we were curious to know what caused the peak in 2011, we filtered the da
 | system operability disruption |      12 |
 
 As shown in the DataFrame, intentional attacks was the leading cause of outages in the year 2011. Interestingly, in the previous year (2010) there were no reported outages caused by intentional attacks. 
-To see if intentional attacks were common in previous years, we graphed a line plot of the total number of intentional attacks vs time.
+To see if these attacks were common in the previous years, we graphed a line plot of the total number of attacks against time. 
 
-<iframe src="assets/TVD_Duration_State_Choropleth.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/Outage_Occurrence_State.html" width=800 height=600 frameBorder=0></iframe>
 
 ### Interesting Aggregates
-**Conditional Distribution of States Given Cause of Outage**
+We became curious if a certain state was responsible for the rise in intentional attacks on the power grid. To answer this question, we grouped the DataFrame by state and pivoted the table based on the cause of outages so that we can output a conditional distribution of U.S. States given outage cause.
 
 | U.S._STATE           |   equipment failure |   fuel supply emergency |   intentional attack |   islanding |   public appeal |   severe weather |   system operability disruption |
 |:---------------------|--------------------:|------------------------:|---------------------:|------------:|----------------:|-----------------:|--------------------------------:|
@@ -157,6 +148,7 @@ To see if intentional attacks were common in previous years, we graphed a line p
 | Wisconsin            |              0      |                  0.098  |               0.0167 |      0      |          0.0145 |           0.0092 |                          0      |
 | Wyoming              |              0.0167 |                  0      |               0.0072 |      0.0217 |          0      |           0.0013 |                          0      |
 
+To more easily view the leading state for each cause of outage, we ran idxmax() on the DataFrame.
 
 | CAUSE.CATEGORY                | 0          |
 |:------------------------------|:-----------|
@@ -167,6 +159,8 @@ To see if intentional attacks were common in previous years, we graphed a line p
 | public appeal                 | Texas      |
 | severe weather                | Michigan   |
 | system operability disruption | California |
+
+As shown in the DataFrame, Washington was the leading state for the greatest proportion of outages caused by intentional attacks in all of United States. It was from this information we formulated our Hypothesis Question. We were curious to figure out if it was by chance alone that Washington (1st Place)along with Delaware (2nd Place) became the leaders of outages caused from intentional attacks.
 
 ## Assessment of Missingness
 ### Missingness Dependency
@@ -194,7 +188,19 @@ The graph illustrates empirical distribution of TVD from the permutation testing
 
 <iframe src="assets/TVD_Duration_State.html" width=800 height=600 frameBorder=0></iframe>
 
-
 ## Hypothesis Testing
 
+As stated earlier, we discovered Washington was the leading state for the greatest proportion of outages caused by intentional attacks in all of United States. We became curious to figure out if it was by random chance that Washington along with Delaware became the leaders of outages caused from intentional attacks. 
+
+**Null Hypothesis**: In the population, the proportion of outages caused by intentional attacks are similar across all U.S. States, and the cause of proportionally higher cases of intentional attacks in certain U.S. States seen in our sample is due to random chance. 
+
+**Alternative Hypothesis**: In the population, the reason for proportionally higher cases of intentional attacks in certian U.S. States cannot be explained by random chance alone. Something bigger is at play.
+
+The following is empirical distribution for the proof of our hypothesis.\
+The red line indicates p-value 
 <iframe src="assets/TVD_Intentional.html" width=800 height=600 frameBorder=0></iframe>
+
+#### Conclusion
+We used Total Variation Distance as test statistics because we are dealing with categorical value, which is `POSTAL.CODE` and if the following row is caused by intentional attack or not. It was good choice because the Total Variation Distance of the two, whether the following outage was caused by an intentional attack or not, directly shows if the intentional attack occurrence is clustered around certain states. As a result, after running 10000 permutation tests, the calculated p-value was 0.\
+Since the calculated p-value is below the cutoff (five percent), we reject null hypothesis. 
+Thus, we conclude that there are very high chance that the reason for proportionally higher cases of intentional attacks in certian U.S. States is not random chance alone. 
