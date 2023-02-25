@@ -1,5 +1,5 @@
 ## Attacks on Power Grids Analysis
-**Authors**: Gabriel Cha, Jun-Hee Hwang
+**Authors**: Gabriel Cha, Jun-Hee Hwang\
 **Tools**: Python, Pandas, Plotly, Numpy
 
 ## Introduction
@@ -7,21 +7,16 @@ Power outages can have a significant economic impact, as they can disrupt busine
 
 Specifically, there has been a rise of intentional attacks on power grids. Interestingly, these attacks have been clustered around certain US States, such as Washington and Iowa. **Are these states experiencing a rise in attacks by chance alone, or is there something bigger at play?**
 
-**Rows and Columns**
+#### Rows and Columns
 
 There are 1534 rows and 12 columns in the dataset that are relevant to the question. 
 
-The column `YEAR` is used to see when the rate of intentional attacks on power grids began to rise. 
-
-Columns `U.S._STATE` and `POSTAL.CODE` are used to determine where the attacks are clustered. 
-
-Columns `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.TIME`, and `OUTAGE.RESTORATION.DATE` are used to see the time it took to restore the power.
-
-Column `CAUSE.CATEGORY` is used to see what kind of causality there are and the proportion of intentional attacks among them. 
-
-Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage. 
-
-Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks. 
+The column `YEAR` is used to see when the rate of intentional attacks on power grids began to rise.\
+Columns `U.S._STATE` and `POSTAL.CODE` are used to determine where the attacks are clustered.\
+Columns `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.TIME`, and `OUTAGE.RESTORATION.DATE` are used to see the time it took to restore the power.\
+Column `CAUSE.CATEGORY` is used to see what kind of causality there are and the proportion of intentional attacks among them.\
+Column `TOTAL.PRICE` and `CUSTOMERS.AFFECTED` are used to calculate total loss from the power outage.\ 
+Column `COST.LOSS` is newly added column to see loss yielded from the power outage. It'll show the loss from power outage caused by intentional attacks.\ 
 
 
 ## Cleaning and EDA
@@ -51,7 +46,7 @@ Since we are planning to use this column frequently throughout the analysis, we 
 
 Since we are planning to use this column in graphic analysis, we decided to fill out NaN values in `TOTAL.PRICE` with the median of non-NaN values in each state in `POSTAL.CODE`. 
 
-**Cleaned dataframe**
+#### Cleaned dataframe
 
 |   YEAR | POSTAL.CODE   | U.S._STATE   | CLIMATE.CATEGORY   | OUTAGE.START.DATE         | OUTAGE.START.TIME   | OUTAGE.RESTORATION.DATE    | OUTAGE.RESTORATION.TIME   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   TOTAL.PRICE |   CUSTOMERS.AFFECTED |
 |-------:|:--------------|:-------------|:-------------------|:--------------------------|:--------------------|:---------------------------|:--------------------------|:-------------------|------------------:|--------------:|---------------------:|
@@ -78,7 +73,7 @@ As shown in the distribution, outages are most commonly caused from severe weath
 
 <iframe src="assets/Outage_Occurrence_State.html" width=800 height=600 frameBorder=0></iframe>
 
-As shwon in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
+As shown in the bar chart, California is the leading state with the most outages (13.69% of all recorded outages). The second leading state with the most outages is Texas, making up 8.28% of all outages. Alaska comes last with one reported outage. 
 
 ### Bivariate Analysis
 **Time (Year) vs Number of Outages**
